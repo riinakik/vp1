@@ -1,0 +1,25 @@
+{
+  "name": "vp1",
+  "version": "1.0.0",
+  "description": "veebiprogrammeerimise kursuse ekspress.js projekt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitriinakik@github.com/riinakik/vp1.git"
+  },
+  "keywords": [
+    "veebiprogrammeerimine"
+  ],
+  "author": "Riina Kikkas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riinakik/vp1/issues"
+  },
+  "homepage": "https://github.com/riinakik/vp1#readme", 
+  "dependencies": {
+    "express": "~4.16.1"
+  }
+}
