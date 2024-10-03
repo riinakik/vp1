@@ -17,13 +17,15 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 <p>Mul käib sellele kursusel ka üks sõber <a href="../../../~kertots">sõber</a>.</p>
 <hr>
 <ul>
- <li><a href="/timenow">Ajainfo<a/></li>
- <li><a href="/justlist">Vanasõnad<a/></li>
- <li><a href="/regvisit">Registreeri oma külastus<a/></li>
-
-
+ <li><a href="/">Avaleht<a/></li>
+</ul>
+<hr>
+<hr2><%= h2 %></h2>
+<ul>
+  <% listData.forEach(function(item) { %>
+  <li><%= item %></li>
+  <% }); %>
 </ul>
 
 </body>
-
 </html>
