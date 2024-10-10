@@ -17,15 +17,20 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 <p>Mul käib sellele kursusel ka üks sõber <a href="../../../~kertots">sõber</a>.</p>
 <hr>
 <ul>
- <li><a href="/">Avaleht</a></li>
+  <li><a href="/">Avaleht</a></li>
 </ul>
 <hr>
-<h2>Praegune ajahetk</h2>
-<ul>
-  <li>Nädalapäev: <%=nowWD %></li>
-  <li>Kuupäev: <%=nowD %></li>
-  <li>Kellaaeg: <%=nowT %></li>
-</ul>
+<h2>Pane oma nimi andmebaasi kirja</h2>
+<form method="POST">
+ <label for="firstNameInput">Eesnimi: </label>
+ <input type="text" id="firstNameInput" name="firstNameInput" placeholder="Eesnimi ..." value ="<%= firstName%>">
+ <br>
+ <label for="lastNameInput">Perekonnanimi: </label>
+ <input type="text" id="lastNameInput" name="lastNameInput" placeholder="Perekonnanimi ..." value ="<%= lastName%>">
+ <br>
+ <input type="submit" id="regSubmit" name="regSubmit" value="Salvesta">
+</form>
+<p><%= notice %></p>
 
 </body>
 </html>

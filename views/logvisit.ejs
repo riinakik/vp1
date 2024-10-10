@@ -20,12 +20,12 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
  <li><a href="/">Avaleht</a></li>
 </ul>
 <hr>
-<h2>Praegune ajahetk</h2>
-<ul>
-  <li>Nädalapäev: <%=nowWD %></li>
-  <li>Kuupäev: <%=nowD %></li>
-  <li>Kellaaeg: <%=nowT %></li>
-</ul>
-
+<h2>Külastaja eesnimi, perekonnanimi, kuupäev ja kellaaeg</h2>
+   <ol>
+     <% listData.forEach(name => { %>
+        <li><%= name %></li>
+     <% }); %>
+    </ol>
 </body>
+
 </html>

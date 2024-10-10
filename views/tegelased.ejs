@@ -17,15 +17,16 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 <p>Mul käib sellele kursusel ka üks sõber <a href="../../../~kertots">sõber</a>.</p>
 <hr>
 <ul>
- <li><a href="/">Avaleht</a></li>
+  <li><a href="/">Avaleht</a></li>
+  <li><a href="/eestifilm">Eesti filmi avaleht</a></li>
 </ul>
-<hr>
-<h2>Praegune ajahetk</h2>
+<h2>Eesti filmitegelased</h2>
 <ul>
-  <li>Nädalapäev: <%=nowWD %></li>
-  <li>Kuupäev: <%=nowD %></li>
-  <li>Kellaaeg: <%=nowT %></li>
+  <% persons.forEach(function(item) { %>
+  <li><%= item.first_name%> <%= item.last_name%>, sündinud <%= item.birth_date%></li>
+  <% }); %>
 </ul>
+
 
 </body>
 </html>
