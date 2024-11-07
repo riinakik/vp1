@@ -2,3 +2,14 @@ Külastuste logi:
 
 
 CREATE TABLE `if24_riina_kikkas`.`visitlog` (`id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(100) NOT NULL , `last_name` VARCHAR(100) NOT NULL , `visit_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+uudised
+CREATE TABLE `if24_riina_kikkas`.`uudised` (`id` INT(11) NOT NULL AUTO_INCREMENT , `news_title` VARCHAR(100) NOT NULL , `news_text` TEXT NOT NULL , `news_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `expire_date` DATE NOT NULL , `user_id` INT(11) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+
+pildigalerii
+CREATE TABLE `if24_riina_kikkas`.`photos` (`id` INT(11) NOT NULL AUTO_INCREMENT , `file_name` VARCHAR(140) NOT NULL , `orig_name` VARCHAR(140) NOT NULL , `alt_text` VARCHAR(254) NULL , `privacy` INT(1) NOT NULL , `user_id` INT NOT NULL , `added` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `deleted` DATETIME NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+
+kasutajad
+CREATE TABLE `if24_riina_kikkas`.`users` (`id` INT(11) NOT NULL AUTO_INCREMENT , `first_name` VARCHAR(140) NOT NULL , `last_name` VARCHAR(100) NOT NULL , `birth_date` DATE NOT NULL , `gender` INT(1) NOT NULL , `email` VARCHAR(250) NOT NULL , `password` VARCHAR(60) NOT NULL , `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`)) ENGINE = InnoDB; 

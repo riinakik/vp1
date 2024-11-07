@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+ <meta charset ="utf-8">
+ <title>Riina Kikkas</title>
+</head>
+
+<body>
+<img src="/banner/vp_banner_2024.png" alt="Veebiprogrammerimise 2024 bänner">
+<h1>Riina Kikkas</h1>
+<p>See leht on loodud õppetöö raames <a href="https://www.tlu.ee"
+target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</p>
+
+
+<p>Riina arvab, et see leht pole veel valmis ja teeb siia palju muudatusi.</p>
+<hr>
+<ul>
+  <li><a href="/">Avaleht</a></li>
+</ul>
+<hr>
+<h2>Lisa uudis</h2>
+<form method="POST">
+ <label for="titleInput">Uudise pealkiri: </label>
+ <br>
+ <input type="text" id="titleInput" name="titleInput" placeholder="Uudise pealkiri ...">
+ <br>
+ <br>
+ <label for="newsInput">Uudise Sisu: </label>
+ <br>
+ <textarea id ="newsInput" name="newsInput" placeholder="Uudise sisu..."
+ cols="100" rows="5"></textarea>
+ <br>
+ <label for="expireInput">Uudise aegumiskuupäev: </label>
+ <input type="date" id="expireInput" name="expireInput" value="<%= expDate %>">
+ <br>
+ <br>
+ <input type="submit" id="newsSubmit" name="newsSubmit" value="Salvesta">
+</form>
+<p><%= notice %></p>
+<p><%= titleNotice %></p>
+<p><%= newsNotice %></p>
+
+</body>
+</html>

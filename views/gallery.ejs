@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+ <meta charset ="utf-8">
+ <title>Riina Kikkas</title>
+</head>
+
+<body>
+<img src="/banner/vp_banner_2024.png" alt="Veebiprogrammerimise 2024 bänner">
+<h1>Riina Kikkas</h1>
+<p>See leht on loodud õppetöö raames <a href="https://www.tlu.ee"
+target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</p>
+
+
+<p>Riina arvab, et see leht pole veel valmis ja teeb siia palju muudatusi.</p>
+<hr>
+<ul>
+ <li><a href="/">Avaleht</a></li>
+</ul>
+<hr>
+<h2>Pildigalerii</h2>
+<div class="gallery">
+        <% pictures.forEach(item => { %>
+            <div class="gallery-item">
+                <img src="/gallery/thumb/<%= item.file_name %>" alt="<%= item.alt_text %>">
+                <p><%= item.alt_text %></p> <!-- Kuvab alt-teksti pildi all -->
+            </div>
+        <% }); %>
+</div>
+<style>
+.gallery {
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: center; /* Keskendab pildid konteineri sees */
+    gap: 20px; /* Määrab 20px vahe piltide vahel */
+    margin: 20px auto; /* Keskendab galerii horisontaalselt lehel */
+    max-width: 90%; /* Piirab galerii laiust */
+}
+
+.gallery-item {
+    text-align: center; /* Joondab alt-teksti keskele pildi all */
+}
+</style>
+
+</body>
+</html>

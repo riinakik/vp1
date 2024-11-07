@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+ <meta charset ="utf-8">
+ <title>Riina Kikkas</title>
+</head>
+
+<body>
+<img src="/banner/vp_banner_2024.png" alt="Veebiprogrammerimise 2024 bänner">
+<h1>Riina Kikkas</h1>
+<p>See leht on loodud õppetöö raames <a href="https://www.tlu.ee"
+target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</p>
+
+
+<p>Riina arvab, et see leht pole veel valmis ja teeb siia palju muudatusi.</p>
+<hr>
+<ul>
+  <li><a href="/">Avaleht</a></li>
+</ul>
+<hr>
+<h2>Sisesta andmed andmebaasi</h2>
+
+<h3>Lisa näitleja</h3>
+<form method="POST" action="/submitdb">
+    <label for="firstNameInput">Eesnimi: </label>
+    <input type="text" id="firstNameInput" name="firstNameInput" placeholder="Eesnimi ..." >
+    <label for="lastNameInput">Perekonnanimi: </label>
+    <input type="text" id="lastNameInput" name="lastNameInput" placeholder="Perekonnanimi ..." >
+    <label for="birthDateInput">Sünniaeg: </label>
+    <input type="date" id="birthDateInput" name="birthDateInput" placeholder="Sünniaeg nt 1929-07-08..." >
+    <input type="submit" name="personSubmit" value="Salvesta">
+</form>
+<p><%= personNotice %></p>
+
+
+<h3>Lisa film</h3>
+<form method="POST" action="/submitdb">
+    <label for="titleInput">Filmi nimi: </label>
+    <input type="text" id="titleInput" name="titleInput" placeholder="Filmi nimi ..." >
+    <label for="productionYearInput">Tootmise aasta: </label>
+    <input type="number" id="productionYearInput" name="productionYearInput" placeholder="Tootmise aasta ..." >
+    <label for="durationInput">Kestus: </label>
+    <input type="number" id="durationInput" name="durationInput" placeholder="Kestus min..." >
+    <label for="descriptionInput">Kirjeldus: </label>
+    <input type="text" id="descriptionInput" name="descriptionInput" placeholder="Kirjeldus..." >
+	 <input type="submit" name="filmSubmit" value="Salvesta">
+</form>
+<p><%= filmNotice %></p>
+
+
+<h3>Lisa roll</h3>
+<form method="POST" action="/submitdb">
+    <label for="positionNameInput">Roll: </label>
+    <input type="text" id="positionNameInput" name="positionNameInput" placeholder="Roll ..." >
+    <label for="roleDescriptionInput">Kirjeldus: </label>
+    <input type="text" id="roleDescriptionInput" name="roleDescriptionInput" placeholder="Kirjeldus..." >
+    <input type="submit" name="roleSubmit" value="Salvesta">
+</form>
+<p><%= roleNotice %></p>
+
+
+</body>
+</html>
