@@ -16,7 +16,7 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 <p>Riina arvab, et see leht pole veel valmis ja teeb siia palju muudatusi.</p>
 <hr>
 <ul>
-  <li><a href="/">Avaleht</a></li>
+  <li><a href="/home">Home</a></li>
 </ul>
 <hr>
 <h2>Sisesta andmed andmebaasi</h2>
@@ -58,6 +58,10 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
     <input type="submit" name="roleSubmit" value="Salvesta">
 </form>
 <p><%= roleNotice %></p>
+
+<% if (userName) { %>
+    <p>Tere, <%= userName %>!</p>
+<% } %>
 
 
 </body>

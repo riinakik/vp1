@@ -17,11 +17,14 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 <hr>
 <h2> Eesti film</h2>
 <ul>
-  <li><a href="/">Avaleht</a></li>
+  <li><a href="/home">Home</a></li>
   <li><a href="/eestifilm/tegelased">Eesti filmitegelased</a></li>
+  <li><a href="/eestifilm/lisaseos">Lisa filmitegelaste seoseid</a></li>
 </ul>
 <hr>
-
+<% if (userName) { %>
+    <p>Tere, <%= userName %>!</p>
+<% } %>
 
 
 </body>
