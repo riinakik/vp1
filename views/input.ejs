@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+ <meta charset ="utf-8">
+ <title>Riina Kikkas</title>
+</head>
+
+<body>
+<h1>Viljaveo andmete sisestamine</h1>
+
+
+
+
+<hr>
+<ul>
+  <li><a href="/">AVALEHT</a></li>
+</ul>
+<hr>
+<h2>Lisa andmed</h2>
+<form method="POST">
+ <label for="truckInput">Auto nr: </label>
+ <br>
+ <input type="text" id="truckInput" name="truckInput" placeholder="Auto nr ...">
+ <br>
+ <br>
+ <label for="weightInput">Auto kaal sisenemisel: </label>
+ <br>
+ <input type="number" id ="weigthInput" name="weightInput" placeholder="Auto kaal sisenemisel...">
+ <br>
+ <br>
+ <label for="weightOutput">Auto kaal väljumisel: </label>
+ <br>
+ <input type="number" id ="weightOutput" name="weightOutput" placeholder="Auto kaal väljumisel...">
+ <br>
+ <br>
+ <input type="submit" id="weightSubmit" name="weightSubmit" value="Salvesta">
+</form>
+<p><%= notice %></p>
+
+</body>
+</html>

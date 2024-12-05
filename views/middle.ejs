@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="et">
+
+<head>
+ <meta charset ="utf-8">
+ <title>Riina Kikkas</title>
+</head>
+
+<body>
+<h1>Ootel koormate mahalaadimine</h1>
+<hr>
+<ul>
+  <li><a href="/">AVALEHT</a></li>
+</ul>
+<hr>
+<form method="POST" action="/middle">
+ <br>
+ <label for="truckSelect">Auto</label>
+	<br>
+	<select id="truckSelect" name="truckSelect">
+		<option selected disabled>Vali auto</option>
+		<% carList.forEach(function(car) { %>
+			<option value="<%= car.truck %>"><%= car.truck %></option>
+		<% }); %>
+	</select>
+    <br><br>
+ <label for="weightOutput">Kaal väljumisel: </label>
+ <br>
+ <input type="number" id ="weightOutput" name="weightOutput" placeholder="Kaal väljumisel...">
+ <br>
+ <br>
+ <br>
+ <input type="submit" id="weightSubmit" name="weightSubmit" value="Salvesta">
+</form>
+<% if (notice) { %>
+  <p><%= notice %></p>
+<% } %>
+
+
+</body>
+</html>

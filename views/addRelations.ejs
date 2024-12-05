@@ -20,7 +20,7 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
   <li><a href="/eestifilm">Eesti filmi avaleht</a></li>
 </ul>
 <h2>Lisa seoseid</h2>
-<form method="POST">
+<form method="POST" action="/eestifilm/lisaseos">  
     <label for="personSelect">Filmitegelane</label>
 	<br>
 	<select id="personSelect" name="personSelect">
@@ -52,6 +52,7 @@ target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</
 	<br>
 	<input type="submit" id="relationSubmit" name="relationSubmit" value="Salvesta">
   </form>
+  <%= locals.notice %>
 
 </body>
 </html>

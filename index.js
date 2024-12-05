@@ -4,16 +4,17 @@ const fs = require("fs");
 const dbInfo = require("../../vp2024config");
 const mysql = require("mysql2");
 const bodyparser = require("body-parser");           //päringulahtiharutamiseks POST päringute puhul
+const async = require("async");
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyparser.urlencoded({extended: true}));   //päringu urli parsimine, false, kui ainult tekst
 //filide üleslaadimiseks
-const multer = require("multer");
+//const multer = require("multer");
 
 //seadistame vahevara multer fotode laadimiseks kindlasse kataloogi
-const upload = multer({dest: "./public/gallery/orig/"});
+//const upload = multer({dest: "./public/gallery/orig/"});                      SEE OLULINE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //pildi manipulatsiooniks, suuruse muutmine
 const sharp = require("sharp");
@@ -48,7 +49,6 @@ const checkLogin = function(req, res, next){
 	}
 };
 
-const async = require("async");
 
 app.use((req, res, next) => {
     // Kontrollime, kas sessioonis on kasutaja eesnimi ja perekonnanimi
@@ -454,6 +454,100 @@ app.get("/eestifilm/lisaseos", (req, res)=>{
 	//res.render ("addRelations");
 });
 
+app.post("/eestifilm/lisaseos", (req, res) => {
+    const personId = req.body.personSelect;
+    const movieId = req.body.movieSelect;
+    const positionId = req.body.positionSelect;
+    const role = req.body.roleInput || null;  
+    const notice = "Seos salvestatud edukalt!";
+
+    // Kontrollime, et kõik vajalikud andmed on esitatud
+    if (!personId || !movieId || !positionId) {
+        return res.send("Viga: kõik andmed pole sisestatud!");
+    }
+
+    // SQL-päring seose lisamiseks
+    let sqlReq = "INSERT INTO person_in_movie (person_id, movie_id, position_id, role) VALUES (?, ?, ?, ?)";
+    conn.query(sqlReq, [personId, movieId, positionId, role], (err, result) => {
+        if (err) {
+            console.error("Viga andmete lisamisel:", err);
+            throw err;
+        } else {
+            console.log("Seos salvestatud: ", result.insertId);
+
+            // Andmete uuendamine enne renderdamist
+            const sqlPersons = "SELECT id, first_name, last_name, birth_date FROM person";
+            const sqlMovies = "SELECT id, title, production_year FROM movie";
+            const sqlPositions = "SELECT id, position_name FROM position";
+
+            // Laeme vajalikud andmed andmebaasist
+            conn.query(sqlPersons, (err, person) => {
+                if (err) {
+                    console.error("Viga person andmete laadimisel:", err);
+                    throw err;
+                }
+                console.log("Person andmed:", person);
+
+                conn.query(sqlMovies, (err, movie) => {
+                    if (err) {
+                        console.error("Viga movie andmete laadimisel:", err);
+                        throw err;
+                    }
+                    console.log("Movie andmed:", movie);
+
+                    conn.query(sqlPositions, (err, position) => {
+                        if (err) {
+                            console.error("Viga position andmete laadimisel:", err);
+                            throw err;
+                        }
+                        console.log("Position andmed:", position);
+
+                        // Renderime uuendatud andmetega
+                        res.render("addRelations", {
+                            notice: notice,
+                            personList: person || [],
+                            movieList: movie || [],
+                            positionList: position || []
+                        });
+                    });
+                });
+            });
+        }
+    });
+});
+
+
+/* app.post("/eestifilm/lisaseos", (req, res) => {
+	const personId = req.body.personSelect;
+    const movieId = req.body.movieSelect;
+    const positionId = req.body.positionSelect;
+    const role = req.body.roleInput || null;  
+    const notice = "Seos salvestatud edukalt!";  
+
+    
+    if (!personId || !movieId || !positionId) {
+        return res.send("Viga: kõik andmed pole sisestatud!");
+    }
+
+ 
+    let sqlReq = "INSERT INTO person_in_movie (person_id, movie_id, position_id, role) VALUES (?, ?, ?, ?)";
+    conn.query(sqlReq, [personId, movieId, positionId, role], (err, result) => {
+        if (err) {
+            throw err;
+        } else {
+            console.log("Seos salvestatud: ", result.insertId);
+
+           
+            res.render("addRelations", {
+                notice: notice,
+                personList: req.session.personList,
+                movieList: req.session.movieList,
+                positionList: req.session.positionList
+            });
+        }
+    });
+}); */
+
 
 app.get("/submitdb", checkLogin, (req, res) => {
   res.render("submitdb", { personNotice: "", filmNotice: "", roleNotice: "", firstName: "", lastName: "", birthDate: "", 
@@ -529,15 +623,23 @@ app.post("/submitdb", checkLogin, (req, res) => {
 const newsRouter = require("./routes/newsRoutes");
 app.use("/news", newsRouter);
 
+const photosRouter = require("./routes/photosRoutes");
+app.use("/photos", photosRouter); 
 
+//galerii osa eraldi marsruutide failiga
+/* const galleryRouter = require("./routes/galleryRoutes");
+app.use("/gallery", galleryRouter);
+ */
 
+/* app.get("/photos", checkLogin, (req, res) => {
+    res.render("photos", { userName: req.session.firstName + " " + req.session.lastName });
+});
 
-
-app.get("/photoupload", checkLogin, (req, res)=>{                                
+app.get("/photos/photoupload", checkLogin, (req, res)=>{                                
 	res.render("photoupload", { notice: "", userName: req.session.firstName + " " + req.session.lastName });
 });
 
-app.post("/photoupload", checkLogin, upload.single("photoInput"), (req, res)=>{
+app.post("/photos/photoupload", checkLogin, upload.single("photoInput"), (req, res)=>{
 	console.log(req.body);
 	console.log(req.file);
 	
@@ -569,7 +671,7 @@ app.post("/photoupload", checkLogin, upload.single("photoInput"), (req, res)=>{
 	});	
 });
 
-app.get("/gallery", checkLogin, (req, res)=>{
+app.get("/photos/gallery", checkLogin, (req, res)=>{
 	let sqlReq = "SELECT file_name, alt_text FROM photos WHERE privacy = ? AND deleted IS NULL ORDER BY id DESC";
 	const privacy = 3;
 	let photoList = [];
@@ -585,6 +687,6 @@ app.get("/gallery", checkLogin, (req, res)=>{
 			res.render("gallery", {listData: photoList, userName: req.session.firstName + " " + req.session.lastName});
 		}
 	});
-});                      
+});                */     
 
 app.listen(5113);

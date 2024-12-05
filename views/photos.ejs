@@ -8,30 +8,24 @@
 
 <body>
 <img src="/banner/vp_banner_2024.png" alt="Veebiprogrammerimise 2024 bänner">
-<hr>
 <h1>Riina Kikkas</h1>
 <p>See leht on loodud õppetöö raames <a href="https://www.tlu.ee"
 target="_blank">Tallinna Ülikoolis</a> ja ei sisalda tõsiseltvõetavat sisu.</p>
 
 
 <p>Riina arvab, et see leht pole veel valmis ja teeb siia palju muudatusi.</p>
-<p>
-
 <hr>
+<h2>Pildid</h2>
 <ul>
- <li><a href="/logout">Logi välja</a></li>
- <li><a href="/eestifilm">Eesti film</a></li>
- <li><a href="/regvisitdb">Registreeri oma külastus andmebaasi</a></li>
- <li><a href="/submitdb">Andmete lisamine andmebaasi</a></li>
- <li><a href="/news">Uudised</a></li>
- <li><a href="/photos">Pildid</a></li>
-
+  <li><a href="/home">Home</a></li>
+  <li><a href="/photos/photoupload">Piltide lisamine</a></li>
+  <li><a href="/photos/gallery">Pildigalerii</a></li>
 </ul>
-
+<hr>
 <% if (userName) { %>
     <p>Tere, <%= userName %>!</p>
 <% } %>
 
-</body>
 
+</body>
 </html>

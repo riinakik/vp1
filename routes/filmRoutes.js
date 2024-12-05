@@ -6,21 +6,21 @@ const general = require("../generalFnc");
 router.use(general.checkLogin);
 
 const {
-	newsHome,
-	addNews,
-	addingNews,
-	newsHeadings } = require("../controllers/newsControllers");
+	filmHome,
+	addFilm,
+	addingFilm,
+	filmCharacters } = require("../controllers/filmControllers");
 
 
 // igale marsruudile oma osa nagu seni index failis
 
 //app.get("/news", (req, res)=>{
-router.route("/").get(newsHome);
+router.route("/").get(filmHome);
 
-router.route("/addnews").get(addNews);
+router.route("/lisaseos").get(addFilm);
 
-router.route("/addnews").post(addingNews);
+router.route("/lisaseos").post(addingFilm);
 
-router.route("/shownews").get(newsHeadings);
+router.route("/tegelased").get(filmCharacters);
 
 module.exports = router;

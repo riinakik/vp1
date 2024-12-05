@@ -1,0 +1,53 @@
+<h1>Kokkuvõte</h1>
+<hr>
+<ul>
+  <li><a href="/">AVALEHT</a></li>
+</ul>
+<hr>
+
+<h2>Vali auto ja vaata koormaid</h2>
+
+<!-- Rippmenüü auto valimiseks -->
+<form method="GET" action="/output">
+  <label for="truckSelect">Vali auto</label>
+  <select id="truckSelect" name="truck">
+    <option value="" disabled selected>Vali auto</option>
+    <% carList.forEach(function(car) { %>
+      <option value="<%= car.truck %>"><%= car.truck %></option>
+    <% }); %>
+  </select>
+  <input type="submit" value="Filtreeri">
+</form>
+<hr>
+
+<h2>Kõik koormad</h2>
+
+<!-- Siin kuvame koormad vastavalt valitud autole -->
+<% if (truckFilter) { %>
+  <h3>Valitud auto: <%= truckFilter %></h3>
+<% } else { %>
+<% } %>
+
+<!-- Kuvame koormad -->
+<% if (truckResult.length > 0) { %>
+  <table border="1">
+    <tr>
+      <th>Masin (auto)</th>
+      <th>Sisendkaal (kg)</th>
+      <th>Väljundkaal (kg)</th>
+      <th>Mass (kg)</th>
+    </tr>
+    <% truckResult.forEach(function(car) { %>
+      <tr>
+        <td><%= car.truck %></td>
+        <td><%= car.weight_in %></td>
+        <td><%= car.weight_out %></td>
+        <td><%= car.mass %></td>
+      </tr>
+    <% }); %>
+  </table>
+<% } else { %>
+  <p>Valitud auto kohta pole koormaid.</p>
+<% } %>
+
+<h3>Veetud vilja kogumass: <%= total_mass %> kg</h3>
